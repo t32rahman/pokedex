@@ -37,4 +37,10 @@
         android:textSize="16dp"
         android:padding="5dp" />
 
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Caught" -->
+<!--        android:onClick="toggleCatch"/>-->
+
 </LinearLayout>
