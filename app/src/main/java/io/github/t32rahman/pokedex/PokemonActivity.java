@@ -22,8 +22,14 @@ public class PokemonActivity extends AppCompatActivity {
     private TextView numberTextView;
     private TextView type1TextView;
     private TextView type2TextView;
+    private TextView descriptionTextView;
+
     private String URL;
-    private RequestQueue requestQueue;
+    public RequestQueue requestQueue;
+
+
+    public String pokemon_text_url = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +44,11 @@ public class PokemonActivity extends AppCompatActivity {
         numberTextView = findViewById(R.id.pokemon_number);
         type1TextView = findViewById(R.id.pokemon_type1);
         type2TextView = findViewById(R.id.pokemon_type2);
+        descriptionTextView = findViewById(R.id.pokemon_description);
 
         load();
-
     }
+
 
     public void load() {
         type1TextView.setText("");
@@ -51,6 +58,36 @@ public class PokemonActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    // Flavor text
+                    descriptionTextView.setText("");
+                    pokemon_text_url = "https://pokeapi.co/api/v2/pokemon-species/" + response.getInt("id") + "/";
+                    JsonObjectRequest request_text = new JsonObjectRequest(Request.Method.GET, pokemon_text_url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray flavor_text_entries = response.getJSONArray("flavor_text_entries");
+                                for (int i = 0; i < flavor_text_entries.length(); i++) {
+                                    String lang = flavor_text_entries.getJSONObject(i).getJSONObject("language").getString("name");
+                                    if (lang.toLowerCase().equals("en")) {
+                                        String flavor_text = flavor_text_entries.getJSONObject(0).getString("flavor_text");
+                                        descriptionTextView.setText(flavor_text);
+                                        break;
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                Log.e("PokeAPI", "API Description call error");
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("PokeAPI", pokemon_text_url);
+                            error.getCause();
+                        }
+                    });
+                    requestQueue.add(request_text);
+                    // End Flavor text
+
                     String name = response.getString("name");
                     nameTextView.setText(
                             name.substring(0,1).toUpperCase() + name.substring(1)
@@ -68,6 +105,10 @@ public class PokemonActivity extends AppCompatActivity {
                             type2TextView.setText(type);
                         }
                     }
+
+                    JSONObject species = response.getJSONObject("species");
+                    pokemon_text_url = species.getString("url");
+
                 } catch (JSONException e){
                     Log.e("PokeAPI", "Pokemon json Error");
                 }

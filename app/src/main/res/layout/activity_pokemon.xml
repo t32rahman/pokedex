@@ -7,40 +7,50 @@
     android:orientation="vertical"
     tools:context=".PokemonActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pokemon_image" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pokemon_name"
         android:textAlignment="center"
-        android:textSize="18dp"
-        android:padding="10dp" />
+        android:textSize="25sp"
+        android:padding="10sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pokemon_number"
         android:textAlignment="center"
-        android:textSize="16dp"
-        android:padding="5dp" />
+        android:textSize="16sp"
+        android:padding="5sp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pokemon_type1"
         android:textAlignment="center"
-        android:textSize="16dp"
-        android:padding="5dp" />
+        android:textSize="16sp"
+        android:padding="5sp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pokemon_type2"
         android:textAlignment="center"
-        android:textSize="16dp"
-        android:padding="5dp" />
+        android:textSize="16sp"
+        android:padding="5sp" />
 
-<!--    <Button-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Caught" -->
-<!--        android:onClick="toggleCatch"/>-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pokemon_description"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:padding="10sp"
+        android:textStyle="bold"/>
+
 
 </LinearLayout>
