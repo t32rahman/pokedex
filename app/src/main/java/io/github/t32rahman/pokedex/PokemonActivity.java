@@ -81,7 +81,7 @@ public class PokemonActivity extends AppCompatActivity {
                                 for (int i = 0; i < flavor_text_entries.length(); i++) {
                                     String lang = flavor_text_entries.getJSONObject(i).getJSONObject("language").getString("name");
                                     if (lang.toLowerCase().equals("en")) {
-                                        String flavor_text = flavor_text_entries.getJSONObject(0).getString("flavor_text");
+                                        String flavor_text = flavor_text_entries.getJSONObject(i).getString("flavor_text");
                                         descriptionTextView.setText(flavor_text);
                                         break;
                                     }

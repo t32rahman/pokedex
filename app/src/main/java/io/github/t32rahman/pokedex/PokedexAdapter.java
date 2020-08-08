@@ -53,6 +53,10 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
         }
     }
 
+    // MAX pokemon limit from API call
+    private int POKEMON_MAX = 1000;
+
+
     private List<Pokemon> pokemon = new ArrayList<>();
     private RequestQueue requestQueue;
 
@@ -62,7 +66,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
     }
 
     public void loadPokemon() {
-        String URL = "https://pokeapi.co/api/v2/pokemon?limit=151";
+        String URL = "https://pokeapi.co/api/v2/pokemon?limit=" + POKEMON_MAX;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
