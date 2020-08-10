@@ -11,8 +11,6 @@
 * Android Lolipop (5) or higher
 * 7 Mb of available internal storate
 
-[Link to APK](./app/build/outputs/apk/debug)
-
 ## How it works...
 ### Scroll to find pokemon
 ![pokedex_scroll](./images/pokedex_0_cropped.gif "Pokedex Scroll")
